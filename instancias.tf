@@ -3,9 +3,6 @@ resource "aws_instance" "k8s_master" {
  ami             = "ami-04b9e92b5572fa0d1"
  key_name        = aws_key_pair.main.key_name
  security_groups = ["${aws_security_group.allow_ssh.name}"]
- subnet_id       = element(aws_subnet.private.*.id, 1)
-
-
  network_interface {
    network_interface_id  = aws_network_interface.k8s_master.id
    device_index          = 0
@@ -25,7 +22,6 @@ resource "aws_instance" "k8s_node1" {
  ami             = "ami-04b9e92b5572fa0d1"
  key_name        = aws_key_pair.main.key_name
  security_groups = ["${aws_security_group.allow_ssh.name}"]
- subnet_id       = element(aws_subnet.private.*.id, 1)
   network_interface {
    network_interface_id  = aws_network_interface.k8s_node1.id
    device_index          = 0
@@ -46,7 +42,6 @@ resource "aws_instance" "k8s_node2" {
  ami             = "ami-04b9e92b5572fa0d1"
  key_name        = aws_key_pair.main.key_name
  security_groups = ["${aws_security_group.allow_ssh.name}"]
- subnet_id       = element(aws_subnet.private.*.id, 1)
  network_interface {
    network_interface_id  = aws_network_interface.k8s_node2.id
    device_index          = 0
