@@ -1,7 +1,7 @@
 
 resource "aws_key_pair" "main" {
     key_name = "main"
-    public_key = "${file("D:\\rodolpho.stach\\Documentos\\ssh\\public")}"
+    public_key = file("D:\\rodolpho.stach\\Documentos\\ssh\\public")
   
 }
 
