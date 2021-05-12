@@ -4,3 +4,4 @@
 ec2/*.terraform
 ec2/*.tfstate
 ec2/.terraform.lock.hcl
+ec2/terraform.tfstate.backup

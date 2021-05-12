@@ -22,3 +22,8 @@ variable "instance_type" {
   description = "Tipo de Instância AWS"
   default = "t2.micro"
 }
+
+variable "keyname" {
+    description = "Chave para acesso"
+    default = "acessoData"
+}
