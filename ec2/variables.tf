@@ -24,6 +24,11 @@ variable "instance_type" {
 }
 
 variable "keyname" {
-    description = "Chave para acesso"
-    default = "acessoData"
+  description = "Chave para acesso"
+  default = "acessoData"
+}
+
+variable "securitygroup" {
+  description = "Grupo de controle de acesso"
+  default = "AcessoSSH"
 }
