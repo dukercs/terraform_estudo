@@ -1,6 +1,6 @@
 variable "region" {
   description = "Definir qual a regiao"
-  default = "us-east-1"
+  default = "sa-east-1"
 }
 
 variable "name" {
