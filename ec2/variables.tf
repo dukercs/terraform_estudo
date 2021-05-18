@@ -25,10 +25,14 @@ variable "instance_type" {
 
 variable "keyname" {
   description = "Chave para acesso"
-  default = "acessoData"
+  default = "chaveTerra1"
 }
 
 variable "securitygroup" {
   description = "Grupo de controle de acesso"
-  default = "AcessoSSH"
+  default = "AcessoSSHTemp"
+}
+
+data "http" "meuip" {
+  url = "http://ipv4.icanhazip.com"
 }
