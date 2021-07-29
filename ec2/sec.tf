@@ -7,7 +7,7 @@ resource "aws_key_pair" "main" {
 
 
 resource "aws_security_group" "AcessoSSHTemp" {
-  name = "AcessoSSHTemp"
+  name = var.securitygroup
   ingress {
     from_port   = 22
     to_port     = 22
