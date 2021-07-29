@@ -1,4 +1,5 @@
 resource "aws_instance" "server" {
+  count           = var.quantidade
   ami             = var.ami
   instance_type   = var.instance_type
   key_name        = var.keyname

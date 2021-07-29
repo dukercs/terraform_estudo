@@ -36,3 +36,8 @@ variable "securitygroup" {
 data "http" "meuip" {
   url = "http://ipv4.icanhazip.com"
 }
+
+variable "quantidade" {
+  description = "Quantas instancias EC2 a serem criadas"
+  default     = "2"
+}
