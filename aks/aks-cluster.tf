@@ -1,5 +1,3 @@
-resource "random_pet" "prefix" {}
-
 provider "azurerm" {
   features {}
 }
