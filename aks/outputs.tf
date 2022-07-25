@@ -1,5 +1,5 @@
 output "resource_group_name" {
-  value = azurerm_resource_group.default.name
+  value = var.resourcegroup
 }
 
 output "kubernetes_cluster_name" {

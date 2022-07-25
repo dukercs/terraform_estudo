@@ -2,27 +2,27 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "default" {
-  name     = "wordpressrg"
-  location = "West US 3"
+# resource "azurerm_resource_group" "default" {
+#   name     = "wordpressrg"
+#   location = "West US 3"
 
-  tags = {
-    environment = "Wordpress"
-  }
-}
+#   tags = {
+#     environment = "Wordpress"
+#   }
+# }
 
 resource "azurerm_container_registry" "default" {
   name                = "dukercsmcr1"
-  resource_group_name = azurerm_resource_group.default.name
-  location            = azurerm_resource_group.default.location
+  resource_group_name = var.resourcegroup
+  location            = var.local
   sku                 = "Basic"
 }
 
 
 resource "azurerm_kubernetes_cluster" "default" {
   name                = "wordpress-aks"
-  location            = azurerm_resource_group.default.location
-  resource_group_name = azurerm_resource_group.default.name
+  location            = var.local
+  resource_group_name = var.resourcegroup
   dns_prefix          = "wordpress-k8s"
 
   default_node_pool {
