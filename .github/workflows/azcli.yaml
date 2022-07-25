@@ -27,7 +27,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Iniciando teste azure login
+        run: | 
+          echo Iniciando teste azure login
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
       # Login no azure
       - uses: azure/login@v1
