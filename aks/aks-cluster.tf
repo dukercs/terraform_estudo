@@ -11,6 +11,14 @@ resource "azurerm_resource_group" "default" {
   }
 }
 
+resource "azurerm_container_registry" "default" {
+  name                = "dukercsmcr1"
+  resource_group_name = azurerm_resource_group.default.name
+  location            = azurerm_resource_group.default.location
+  sku                 = "Basic"
+}
+
+
 resource "azurerm_kubernetes_cluster" "default" {
   name                = "wordpress-aks"
   location            = azurerm_resource_group.default.location
