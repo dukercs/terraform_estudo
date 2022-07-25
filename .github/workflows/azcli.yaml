@@ -1,17 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Conectar azure
+name: AKS
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "producao" ]
-  pull_request:
-    branches: [ "producao" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: workflow_dispatch
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,14 +19,32 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: | 
-          echo Iniciando teste azure login
-          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        run: echo Iniciando teste azure login
 
       # Login no azure
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Testar comando
-        run: az account show
+      # Instala o terraform
+      - uses: hashicorp/setup-terraform@v2
+      # Transforma os arquivos de configuração para formato canonico
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      # Inicia os plugins necessários
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      # Valida a configuração
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color          
+      # gera o plano
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -var="appId=85ffa4ef-0dd1-43f7-a928-03ee7ca49bf0" -var="password=vuL8Q~7MhF9PPrHEQpdixcFtkYi~UMZPl4mgfaT-"
+        continue-on-error: true
+      # Aplicar terraform
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false
