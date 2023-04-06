@@ -19,7 +19,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Iniciando teste azure login
+        run: |
+          echo Iniciando teste azure login 
+          cd 
 
       # Login no azure
       - uses: azure/login@v1
